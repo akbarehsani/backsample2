@@ -1,0 +1,135 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNeCvP2wk9w69oQ3YIgW8YU",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/akbarehsani/backsample2/blob/master/matrixDeterminan\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "nZ2eHO9NmFdJ",
+        "outputId": "12b6dd4a-a661-4e97-b88e-d15da705d097"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "v/h:\n",
+            "h\n",
+            "Determinant of A is -240\n",
+            "\n"
+          ]
+        }
+      ],
+      "source": [
+        "import copy\n",
+        "\n",
+        "\n",
+        "def matrixTranspose(m):\n",
+        "   A = [[m[j][i] for j in range(len(m))] for i in range(len(m[0]))] \n",
+        "   return(A)\n",
+        "def rotatematrix(A):\n",
+        "  B=A\n",
+        "  print(len(A))\n",
+        "  for t in range(len(A)):\n",
+        "    #  i=0\n",
+        "     for i in range(len(A)):\n",
+        "    \n",
+        "        for j in range(len(A)):\n",
+        "           print(A[j][t])\n",
+        "      \n",
+        "     return B\n",
+        "\n",
+        "def determinant_recursive(A, total=0):\n",
+        "    \n",
+        "    indices = list(range(len(A)))\n",
+        "    \n",
+        "    \n",
+        "    if len(A) == 2 and len(A[0]) == 2:\n",
+        "        val = A[0][0] * A[1][1] - A[1][0] * A[0][1]\n",
+        "        return val\n",
+        " \n",
+        "    \n",
+        "    for fc in indices:\n",
+        "        \n",
+        "        As =A \n",
+        "        \n",
+        "\n",
+        "        As = As[1:]\n",
+        "        height = len(As) \n",
+        "        \n",
+        " \n",
+        "        for i in range(height): \n",
+        "            As[i] = As[i][0:fc] + As[i][fc+1:] \n",
+        "            \n",
+        " \n",
+        " \n",
+        "        sign = (-1) ** (fc+i)\n",
+        "\n",
+        "        sub_det = determinant_recursive(As)\n",
+        "\n",
+        "        total += sign * A[0][fc] * sub_det \n",
+        " \n",
+        "    return total\n",
+        "\n",
+        "A = [[1,2,3,4,1],[8,5,6,7,2],[9,12,10,11,3],[13,14,16,15,4],[10,8,6,4,2]]\n",
+        "M=[]\n",
+        "print('v/h:')\n",
+        "typeofcalc=input()\n",
+        "if typeofcalc=='V':\n",
+        "  M=matrixTranspose(A)\n",
+        "else:\n",
+        "  M=A\n",
+        "Det = determinant_recursive(M)\n",
+        "print(\"Determinant of A is\", round(Det,9))\n",
+        "print()\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "p8TFWuFNDm3V"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "m3HnVO5vDnLp"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
